@@ -1,0 +1,36 @@
+# FocusFlow Walkthrough
+
+This document demonstrates the adaptive UI states of the FocusFlow application.
+
+## 1. Beginner Mode
+New users start in Beginner Mode, featuring a simplified interface and guided onboarding.
+
+### Onboarding Carousel
+Users are greeted with a 3-step carousel explaining the core concepts.
+![Beginner Onboarding](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/beginner_onboarding_1763891667077.png)
+
+### Empty State & FAB
+The main screen features a large Floating Action Button (FAB) and helpful tooltips to encourage the first action.
+![Beginner Empty List](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/beginner_empty_list_1763891695446.png)
+
+## 2. Experienced Mode
+After completing 5 tasks, the user is upgraded to Experienced Mode.
+
+### Transition
+A celebration toast notifies the user of the upgrade.
+![Transition Toast](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/experienced_transition_1763891865284.png)
+
+### Dense UI & Quick Add
+The interface shifts to a dark theme with a dense task list and a "Quick Add" bar at the top for rapid entry.
+![Experienced List](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/experienced_list_1763891881191.png)
+
+## 3. Behavior-Based Adaptation
+If the user misses 3 or more deadlines in the last 7 days, the app intervenes.
+
+### Intervention Modal
+A full-screen modal appears to help the user get back on track.
+![Intervention Modal](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/intervention_modal_fixed_1763891989898.png)
+
+### Overdue Tasks
+The user can choose to re-prioritize, viewing their overdue tasks clearly.
+![Overdue Tasks](/home/suix0/.gemini/antigravity/brain/6d935168-3b01-4824-9e53-5c25b7ecfa66/overdue_tasks_1763891930467.png)
