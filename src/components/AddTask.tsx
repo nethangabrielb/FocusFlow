@@ -141,7 +141,7 @@ export const AddTask: React.FC = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="absolute bottom-28 right-8 bg-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-primary arrow-bottom"
+                        className="absolute bottom-32 right-8 bg-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium text-primary arrow-bottom"
                     >
                         Add your first task here! 👇
                     </motion.div>
