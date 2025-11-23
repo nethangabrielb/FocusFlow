@@ -1,0 +1,253 @@
+/* Beginner Mode Styles */
+.add-task-beginner {
+    margin-bottom: 20px;
+}
+
+.expand-btn {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    color: var(--secondary-color);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.expand-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: #f0f9ff;
+}
+
+.beginner-form {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.tooltip {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+    font-style: italic;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.cancel-btn {
+    background: transparent;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Beginner Task Item */
+.task-item.beginner {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.task-item.beginner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkbox-wrapper input {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.task-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-text {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.task-date {
+    font-size: 0.8rem;
+    color: var(--secondary-color);
+}
+
+.delete-btn-text {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+.delete-btn-text:hover {
+    background: #fef2f2;
+    color: var(--danger-color);
+    border-color: #fecaca;
+}
+
+/* Experienced Mode Styles */
+.add-task-experienced {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.add-task-experienced input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.add-task-experienced button {
+    padding: 0 15px;
+    background: var(--text-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Experienced Task Item */
+.task-item.experienced {
+    background: white;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-item.experienced:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.task-item.experienced:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom: none;
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.compact-checkbox {
+    width: 16px;
+    height: 16px;
+}
+
+.task-date-compact {
+    font-size: 0.75rem;
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--secondary-color);
+}
+
+.task-actions {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.task-item.experienced:hover .task-actions {
+    opacity: 1;
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 1rem;
+    opacity: 0.6;
+}
+
+.icon-btn:hover {
+    opacity: 1;
+}
+
+/* Common States */
+.completed .task-text {
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+
+.overdue .task-text {
+    color: var(--danger-color);
+}
+
+.overdue-badge {
+    background: #fef2f2;
+    color: var(--danger-color);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-top: 2px;
+    display: inline-block;
+    width: fit-content;
+}
