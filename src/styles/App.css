@@ -5,6 +5,15 @@
     padding: 20px;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.5s ease;
+}
+
+.app-container.focused-mode {
+    background: linear-gradient(to bottom, #f0fdf4, #ffffff);
+}
+
+.app-container.distracted-mode {
+    background: linear-gradient(to bottom, #fff1f2, #ffffff);
 }
 
 .app-header {
@@ -151,15 +160,32 @@ input:checked+.slider:before {
 
 /* Motivational Widget */
 .motivational-widget {
-    background: #fff1f2;
-    border: 1px solid #fecdd3;
-    color: #881337;
+    background: white;
+    border: 1px solid var(--border-color);
     padding: 15px;
     border-radius: 12px;
-    display: flex;
-    gap: 15px;
     margin-bottom: 20px;
-    animation: slideDown 0.3s ease-out;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.motivational-widget.focused {
+    background: #dcfce7;
+    border-color: #86efac;
+    color: #166534;
+    transform: scale(1.02);
+}
+
+.motivational-widget.distracted {
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #991b1b;
+}
+
+.motivational-widget p {
+    margin: 0;
+    font-weight: 500;
 }
 
 @keyframes slideDown {

@@ -10,10 +10,10 @@ import './styles/App.css';
 import './styles/Themes.css';
 
 const MainLayout = () => {
-  const { userState, toggleMode, stats } = useAppContext();
+  const { userState, behaviorState, toggleMode, stats } = useAppContext();
 
   return (
-    <div className={`app-container ${userState}-theme`}>
+    <div className={`app-container ${userState}-theme ${behaviorState}-mode`}>
       <header className="app-header">
         <h1>Adaptive To-Do</h1>
         <div className="header-controls">

@@ -22,8 +22,9 @@ const DebugPanel = () => {
         }}>
             <h4 style={{ margin: 0, borderBottom: '1px solid #555', paddingBottom: '5px' }}>Debug Panel</h4>
             <div>Current Mode: <strong style={{ color: userState === 'experienced' ? '#4ade80' : '#60a5fa' }}>{userState.toUpperCase()}</strong></div>
-            <button onClick={() => simulateState('EXPERIENCED')} style={btnStyle}>Simulate 5 Tasks (Level Up)</button>
-            <button onClick={() => simulateState('MISSED_DEADLINES')} style={btnStyle}>Simulate 3 Missed Deadlines</button>
+            <button onClick={() => simulateState('EXPERIENCED')} style={btnStyle}>Simulate Level Up</button>
+            <button onClick={() => simulateState('FOCUSED')} style={btnStyle}>Simulate Focused</button>
+            <button onClick={() => simulateState('DISTRACTED')} style={btnStyle}>Simulate Distracted</button>
             <button onClick={() => simulateState('RESET')} style={{ ...btnStyle, background: '#ef4444' }}>Reset User State</button>
         </div>
     );
