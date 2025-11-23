@@ -11,11 +11,12 @@ interface DashboardLayoutProps {
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children, currentView, onNavigate }) => {
     const userState = useUserState();
+    const isDark = userState === 'experienced';
 
     return (
         <div className={clsx(
             "flex h-screen w-full overflow-hidden transition-colors duration-300",
-            userState === 'experienced' ? "bg-gray-950" : "bg-gray-50"
+            isDark ? "bg-slate-950" : "bg-gray-50"
         )}>
             <Sidebar currentView={currentView} onNavigate={onNavigate} />
 

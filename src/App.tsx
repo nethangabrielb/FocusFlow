@@ -3,7 +3,6 @@ import { DashboardLayout } from './components/DashboardLayout';
 import { Dashboard } from './components/Dashboard';
 import { TaskList } from './components/TaskList';
 import { AddTask } from './components/AddTask';
-import { InterventionModal } from './components/InterventionModal';
 import { DebugPanel } from './components/DebugPanel';
 import { useStore } from './store/useStore';
 import { useUserState } from './hooks/useUserState';
@@ -30,16 +29,9 @@ function App() {
             {currentView === 'dashboard' && <Dashboard />}
 
             {currentView === 'tasks' && (
-                <div className="space-y-6">
-                    <div className="flex items-center justify-between">
-                        <h2 className={`text-2xl font-bold ${userState === 'experienced' ? 'text-white' : 'text-gray-900'}`}>
-                            My Tasks
-                        </h2>
-                        {/* Add Task Button for Experienced Mode could go here or be inline */}
-                    </div>
-
-                    {/* In Experienced mode, AddTask is at the top */}
-                    {userState === 'experienced' && <AddTask />}
+                <div className="space-y-4">
+                    {/* In Experienced or Needs Help mode, AddTask is at the top */}
+                    {(userState === 'experienced' || userState === 'needsHelp') && <AddTask />}
 
                     <TaskList />
 
@@ -50,7 +42,6 @@ function App() {
 
             {/* Overlays */}
             {userState === 'beginner' && !hasSeenOnboarding && <Onboarding />}
-            <InterventionModal />
 
             {/* Transition Toast */}
             {showToast && (

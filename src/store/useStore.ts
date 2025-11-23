@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { isBefore, startOfDay, subDays, parseISO } from 'date-fns';
+import { isBefore, subDays, parseISO } from 'date-fns';
 
 export type Priority = 'low' | 'medium' | 'high';
 
@@ -32,6 +32,8 @@ interface StoreState {
 
     // Debug Actions
     debugSetState: (payload: { tasks?: Task[], userProfile?: Partial<UserProfile> }) => void;
+    rescheduleOverdueTasks: () => void;
+    clearOverdueTasks: () => void;
 
     // Selectors/Helpers
     getUserState: () => 'beginner' | 'experienced' | 'needsHelp';
@@ -99,6 +101,43 @@ export const useStore = create<StoreState>()(
                 tasks: payload.tasks ?? state.tasks,
                 userProfile: { ...state.userProfile, ...payload.userProfile }
             })),
+
+            rescheduleOverdueTasks: () => set((state) => {
+                const now = new Date();
+                const sevenDaysAgo = subDays(now, 7);
+
+                const newTasks = state.tasks.map(t => {
+                    if (!t.dueDate || t.completedAt) return t;
+                    const due = parseISO(t.dueDate);
+                    // Identify overdue tasks (same logic as getOverdueTasksCount)
+                    if (isBefore(due, now) && isBefore(sevenDaysAgo, due)) {
+                        return { ...t, dueDate: now.toISOString() };
+                    }
+                    return t;
+                });
+
+                return {
+                    tasks: newTasks,
+                    userProfile: { ...state.userProfile, lastInterventionDate: now.toISOString() }
+                };
+            }),
+
+            clearOverdueTasks: () => set((state) => {
+                const now = new Date();
+                const sevenDaysAgo = subDays(now, 7);
+
+                const newTasks = state.tasks.filter(t => {
+                    if (!t.dueDate || t.completedAt) return true;
+                    const due = parseISO(t.dueDate);
+                    // Keep task if it is NOT overdue
+                    return !(isBefore(due, now) && isBefore(sevenDaysAgo, due));
+                });
+
+                return {
+                    tasks: newTasks,
+                    userProfile: { ...state.userProfile, lastInterventionDate: now.toISOString() }
+                };
+            }),
 
             getOverdueTasksCount: () => {
                 const { tasks } = get();

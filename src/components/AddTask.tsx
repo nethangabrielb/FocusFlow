@@ -4,7 +4,7 @@ import { useUserState } from '../hooks/useUserState';
 import { Plus, X, Calendar, Flag, Tag, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import clsx from 'clsx';
-import { addDays, addHours, startOfTomorrow } from 'date-fns';
+import { addHours, startOfTomorrow } from 'date-fns';
 
 export const AddTask: React.FC = () => {
     const addTask = useStore(state => state.addTask);
@@ -150,29 +150,58 @@ export const AddTask: React.FC = () => {
         );
     }
 
-    // Experienced Mode: Quick Add Bar
+    // Experienced & Needs Help Mode: Quick Add Bar
+    const isDark = userState === 'experienced';
+
     return (
-        <div className="bg-gray-800 p-4 border-b border-gray-700">
-            <form onSubmit={handleQuickSubmit} className="relative">
-                <input
-                    type="text"
-                    value={quickInput}
-                    onChange={e => setQuickInput(e.target.value)}
-                    placeholder="Quick add... (e.g. 'Call Mom tomorrow')"
-                    className="w-full bg-gray-900 text-white pl-4 pr-12 py-3 rounded-lg border border-gray-700 focus:border-primary focus:ring-1 focus:ring-primary placeholder-gray-500 transition-all"
-                />
-                <button
-                    type="submit"
-                    disabled={!quickInput.trim()}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-2 text-primary hover:text-white transition-colors disabled:opacity-50"
-                >
-                    <Send size={20} />
-                </button>
-            </form>
-            <div className="flex gap-4 mt-2 px-1 overflow-x-auto text-xs text-gray-400 scrollbar-hide">
-                <span className="flex items-center gap-1"><Calendar size={12} /> Natural Language</span>
-                <span className="flex items-center gap-1"><Tag size={12} /> #tags supported</span>
-                <span className="flex items-center gap-1"><Flag size={12} /> !priority</span>
+        <div className="px-4 pt-4">
+            <div className={clsx(
+                "p-3 rounded-xl border transition-all duration-200",
+                isDark
+                    ? "bg-slate-800/40 border-slate-700/50 hover:bg-slate-800/60 hover:border-slate-600"
+                    : "bg-white border-gray-200 shadow-sm"
+            )}>
+                <form onSubmit={handleQuickSubmit} className="relative group">
+                    <input
+                        type="text"
+                        value={quickInput}
+                        onChange={e => setQuickInput(e.target.value)}
+                        placeholder="Quick add... (e.g. 'Call Mom tomorrow')"
+                        className={clsx(
+                            "w-full pl-4 pr-12 py-2.5 rounded-lg border transition-all duration-200 text-sm",
+                            isDark
+                                ? "bg-slate-900/50 text-white border-slate-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 placeholder-slate-500"
+                                : "bg-gray-50 text-gray-900 border-gray-200 focus:border-primary focus:ring-1 focus:ring-primary placeholder-gray-400"
+                        )}
+                    />
+                    <button
+                        type="submit"
+                        disabled={!quickInput.trim()}
+                        className={clsx(
+                            "absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-lg transition-all",
+                            isDark
+                                ? "text-blue-400 hover:bg-blue-500/10 hover:text-blue-300"
+                                : "text-primary hover:text-opacity-80",
+                            "disabled:opacity-50 disabled:cursor-not-allowed"
+                        )}
+                    >
+                        <Send size={16} />
+                    </button>
+                </form>
+                <div className={clsx(
+                    "flex gap-3 mt-2 px-1 overflow-x-auto text-[10px] scrollbar-hide font-medium",
+                    isDark ? "text-slate-500" : "text-gray-500"
+                )}>
+                    <span className="flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-slate-800/50 transition-colors cursor-help whitespace-nowrap" title="Try 'tomorrow at 9am'">
+                        <Calendar size={10} className={isDark ? "text-blue-400" : ""} /> Natural Language
+                    </span>
+                    <span className="flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-slate-800/50 transition-colors cursor-help whitespace-nowrap" title="Try '#work'">
+                        <Tag size={10} className={isDark ? "text-purple-400" : ""} /> #tags
+                    </span>
+                    <span className="flex items-center gap-1 px-1.5 py-0.5 rounded hover:bg-slate-800/50 transition-colors cursor-help whitespace-nowrap" title="Try '!high'">
+                        <Flag size={10} className={isDark ? "text-red-400" : ""} /> !priority
+                    </span>
+                </div>
             </div>
         </div>
     );
